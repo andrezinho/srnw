@@ -138,8 +138,11 @@ function addParticipantei()
   bval = bval && $("#DocParticipante_i").required();  
   bval = bval && $("#Participante_i").required();
   bval = bval && $("#TipoParticipacion_i").required();
-  bval = bval && $("#nro_partida").required();
-  bval = bval && $("#idzonar").required();
+  if($("#list_participantes").val()!="")
+  {
+    bval = bval && $("#nro_partida").required();
+    bval = bval && $("#idzonar").required();
+  }  
   var tp = $("#TipoParticipacion_i").val();
   if(tp!=null)
   {

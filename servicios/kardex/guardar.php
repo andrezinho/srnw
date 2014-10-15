@@ -87,11 +87,11 @@ if (!$Consulta)
                     {
                         //Update
                         $sql = "UPDATE kardex_participantes set 
-                                        idparticipacion = ".$participantes->idparticipacion[$i]."
+                                        idparticipacion = ".$participantes->idparticipacion[$i].",
                                         porcentage='".$participantes->porcentage[$i]."',
-                                        idrepresentado=".$participantes->idrepresentado[$i]."
+                                        idrepresentado=".$participantes->idrepresentado[$i].",
                                         conyuge=".$participantes->conyuge[$i].", tipo=".$participantes->tipo[$i].", idzona='".$participantes->idzona[$i]."', zona='".$participantes->zona[$i]."' 
-                                WHERE idkardex = ".$_POST['1form1_idkardex']." and idparticipante = ".$participantes->idparticipante[$i];
+                                WHERE idkardex = ".$_POST['1form1_idkardex']." and idparticipante = ".$participantes->idparticipante[$i];                      
                         $Conn->Query($sql);
                     }
                     else
