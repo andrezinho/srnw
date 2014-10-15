@@ -1,0 +1,44 @@
+p { margin-top: 3px !important;
+	      margin-bottom:3px !important;       
+  }
+span,p,div {word-wrap: break-word;}
+ul,ol,h6 { margin-top:3px !important;
+  margin-bottom: 3px !important; }
+table tr td {border:1px solid #000 !important;}
+#viaje_externo { position:absolute; padding:180px 0 0 40px !important;}
+#viaje_interno {position:absolute; padding:180px 0 0 43px !important;}
+#idmargen_top { height: 2px !important; }
+#contenedor 
+{
+	background: #fafafa !important;	
+	padding-top: 20px !important;
+}
+#box-contenedor 
+{
+	width:793px !important; margin:0 auto !important; padding:0px 0 50px 0 !important;
+
+}
+.page {
+   margin-bottom: 10px !important;
+   box-shadow: inset 1px 1px 0 rgba(0,0,0,.1),inset 0 -1px 0 rgba(0,0,0,.07), 2px 2px 1px #ccc !important;
+   width:548px !important; 
+   min-height: 855px !important;
+   padding:6px 45px 6px 196px !important;  
+   background-color: rgba(0,0,0,.2) !important;
+   background:#FFFFFF !important;
+   font-size: 19px !important;     
+   font-style:normal !important;
+   font-variant:normal !important;   
+   vertical-align:baseline !important;                                                 
+   font-family:"Times New Roman",arial,Times,serif !important;
+} 
+
+
+span,p,div,div.write-page
+{
+	
+	font-style:normal !important; 
+	font-variant:normal !important;	
+	vertical-align:baseline !important;
+}
+

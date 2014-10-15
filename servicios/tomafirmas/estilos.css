@@ -1,0 +1,41 @@
+#box-list-participantes
+{
+	padding: 10px;	
+	display: inline-block;
+}
+.box-participantes 
+{
+	width: 150px;
+	float: left;	
+	margin-left: 30px;
+	border:1px solid #666;
+	margin-top: 10px;
+}
+.box-pic {
+	width: 150px;
+	height: 112px;
+	background: #dadada;
+	clear: both;
+}
+.box-tools
+{
+	width: 150px;
+	height: 18px;
+	background: #fafafa;
+	color: #FFF;
+	float: left;
+	clear: both;
+	padding: 3px 0;
+}
+.box-info{
+	width: 150px;
+	height: 80px;
+	background: #407000;
+	float: left;
+	clear: both;
+	color: #FFF;
+	padding: 1px 0;	
+	text-align: center;	
+}
+
+.text-info { height: 50px; padding: 0 2px; font-size: 10px; border-bottom: 1px dotted #365800;}
