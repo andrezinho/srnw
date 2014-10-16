@@ -17,7 +17,7 @@
     {
         if($Op==0 || $Op==1)
         {
-            $Guardar = "Op=$Op";
+          $Guardar = "Op=$Op";
         }
     }
     $Enabled2 = "readonly";
@@ -52,7 +52,7 @@ $(function()
                 $("#ap_materno").val("");
                 $("#Sexo").val("");
                 $("#fechanac").val("");
-                $.post("http://localhost/srnw/parametros/cliente/getDatospersona.php",'dni='+dni,function(r){
+                $.post("http://192.168.10.1/srnw/parametros/cliente/getDatospersona.php",'dni='+dni,function(r){
                     $.each(r,function(i,j)
                     {
                         $("#loader_reniec").fadeOut();

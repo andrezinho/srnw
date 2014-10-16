@@ -1,7 +1,7 @@
 <?php
 include("class.upload.php");
 include('../config.php');
-$id_foto=date('Ydmis');//$_GET['kardex']."_".$_GET['idp'];//
+$id_foto=$_GET['kardex']."_".$_GET['idp'];//
 unlink("../../srnw_webcam/".$id_foto.".jpg");
 $foo = new Upload('php:'.$_SERVER['HTTP_X_FILE_NAME']);
 if ($foo->uploaded) 
@@ -40,7 +40,12 @@ if ($foo->uploaded)
 }
 
 chmod("../../srnw_webcam/".$id_foto.".jpg", 0777);
+
 $fecha = date('Y-m-d');
+if(!isset($_GET['c'])||$_GET['c']=="")
+{
+    $_GET['c'] = 1;
+}
 if((int)$_GET['c']==0)
 {
     $sql="update kardex_participantes set foto = '".$id_foto."', firmo=1, firmofecha='".$fecha."' where idkardex = ".$_GET['idkardex']." and idparticipante = ".$_GET['idp'];
@@ -49,7 +54,7 @@ else
 {
     $sql="update kardex_participantes set foto_conyuge = '".$id_foto."', firmo_conyuge=1, firmofecha_conyuge='".$fecha."' where idkardex = ".$_GET['idkardex']." and conyuge = ".$_GET['idp'];
 }
-
+//echo $sql;
 $inserta_foto=$Conn->Query($sql);
 $filename = $id_foto.'.jpg';//nombre del archivo
 

@@ -24,20 +24,36 @@ class PDF extends FPDF{
                     participacion.descripcion as par, 
                     kardex_participantes.firmo,
                     kardex.correlativo,
-                    kardex_participantes.foto
+                    kardex_participantes.foto,
+                    kardex_participantes.foto_conyuge
              FROM cliente 
                     INNER JOIN kardex_participantes ON (cliente.idcliente = kardex_participantes.idparticipante) 
                     INNER JOIN participacion ON (kardex_participantes.idparticipacion = participacion.idparticipacion) 
                     INNER JOIN documento ON (cliente.iddocumento = documento.iddocumento) 
                     INNER JOIN kardex on kardex.idkardex = kardex_participantes.idkardex 
-             WHERE kardex_participantes.idkardex='$idkardex' and kardex_participantes.idparticipante = ".$idparticipante;
+             WHERE kardex_participantes.idkardex='$idkardex'";
+    if((int)$_GET['c']==0)
+    {
+      $sql .= " and kardex_participantes.idparticipante = ".$idparticipante;
+    }
+    else
+    {
+      $sql .= " and kardex_participantes.conyuge = ".$idparticipante;
+    }
     $q = $Conn->Query($sql);
     $row = $Conn->FetchArray($q);
 
 $pdf->SetMargins(12, 5, 10, 10);  
 $pdf->AddPage();
 
-$pdf->Image('../../../srnw_webcam/'.$row['foto'].'.jpg' , 10 ,55, 190 , 150,'JPG');
+if((int)$_GET['c']==0)
+{  
+  $pdf->Image('../../../srnw_webcam/'.$row['foto'].'.jpg' , 10 ,55, 190 , 150,'JPG');
+}
+else
+{
+  $pdf->Image('../../../srnw_webcam/'.$row['foto_conyuge'].'.jpg' , 10 ,55, 190 , 150,'JPG');
+}
 
 $pdf->Output();
 ?>

@@ -49,7 +49,7 @@ PARTICIPANTE: <?php echo $row['nombres']; ?> &nbsp;&nbsp;&nbsp;&nbsp; NRO DOCUME
 PARTICIPACION: <?php echo $row['par'] ?>
 </div>
 <script language="JavaScript">
-    webcam.set_api_url( 'test.php?kardex=<?php echo $row['correlativo']; ?>&c=<?php echo $row['c'] ?>&idp=<?php echo $idparticipante ?>&idkardex=<?php echo $idkardex; ?>&nombres=<?php echo $row['nombres'] ?>' );//PHP adonde va a recibir la imagen y la va a guardar en el servidor
+    webcam.set_api_url( 'test.php?kardex=<?php echo $row['correlativo']; ?>&c=<?php echo $_GET['c'] ?>&idp=<?php echo $idparticipante ?>&idkardex=<?php echo $idkardex; ?>&nombres=<?php echo $row['nombres'] ?>' );//PHP adonde va a recibir la imagen y la va a guardar en el servidor
     webcam.set_quality( 100 ); // calidad de la imagen
     webcam.set_shutter_sound( true ); // Sonido de flash
 	webcam.set_hook( 'onComplete', 'my_completion_handler' );		
