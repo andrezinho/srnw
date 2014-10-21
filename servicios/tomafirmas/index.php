@@ -60,7 +60,7 @@ if(!session_id()){ session_start(); }
 			resizable:false,
 			title: "Modificar Registro",
 			width: 850,
-			height: 450,
+			height: 500,
             modal:false,
 			buttons: {
                 "Actualizar": function() {

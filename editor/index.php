@@ -14,19 +14,15 @@
 
     if(isset($_GET['template'])&&$_GET['template']!="")
     {
-
         //En caso que se quiere usar la copia de otra documento ya elaborado
         $sql = "SELECT digital as plantilla from kardex              
-                 where correlativo = '".$_GET['template']."' and anio = '".$_GET['anio']."'";
-        
+                 where correlativo = '".$_GET['template']."' and anio = '".$_GET['anio']."'";        
         $q = $Conn->Query($sql);
         $r = $Conn->FetchArray($q);
-
         $plantilla_template = stripSlash(html_entity_decode($r[0])); 
         $plantilla_template = str_replace('"Times New Roman"',"'Times New Roman'",$plantilla_template);
         $plantilla_template = str_replace('"times new roman"',"'Times New Roman'",$plantilla_template);
-        $plantilla_template = utf8_decode($plantilla_template);        
-
+        $plantilla_template = utf8_decode($plantilla_template);
     }
     if($plantilla_template=="")
     {
@@ -73,11 +69,11 @@
       $via = $r['via'];
       $fecha_salida = $Conn->DecFecha($r['fecha_salida']);
       $fecha_retorno = $Conn->DecFecha($r['fecha_retorno']);
-      $ruta = $r['ruta'];       
+      $ruta = $r['ruta'];
       //--
 
       $monto_total = $r['monto'];
-      $moneda = $r['moneda']; 
+      $moneda = $r['moneda'];
 
 
       //Verificamos y obtenemos si exibieron medio de pago
@@ -96,8 +92,7 @@
       while($reg = $Conn->FetchArray($stmt))
       {
          $data_pay[] = array($reg[0],$reg[1],$reg[2],$reg[3],$reg[4],$reg[5]);
-      }
-      //--
+      }      
 
       $flag = false;
       $finalizado = $r['finalizado'];
@@ -107,9 +102,8 @@
 
       if($r['digital']=="")
       {
-
           //Si la escritura aun no tiene nada grabado se obtiene la plantilla del servicio
-          $plantilla = stripSlash(html_entity_decode($r['plantilla']));       
+          $plantilla = stripSlash(html_entity_decode($r['plantilla']));
           $plantilla = str_replace('"Times New Roman"',"'Times New Roman'",$plantilla);
   	      $plantilla = utf8_decode($plantilla);
           $flag = true;
@@ -132,8 +126,7 @@
       //Se opta por una plantilla por defecto.
       if($plantilla=="")
       {
-          //Plantilla Limpia
-    
+          //Plantilla Limpia    
           $plantilla = '<div id="contenedor">
                           <div id="box-contenedor">                        
                           <div class="page">
@@ -144,7 +137,6 @@
                         </div>
                       </div>';
           $plantilla = stripSlash($plantilla);
-          
       }
 
       //Recuperamos los participantes en la escritura
@@ -376,6 +368,7 @@ $(document).ready(function()
           {
               $("#templat").val(ui.item.correlativo);
               $("#templat_anio").val(ui.item.anio);
+              $("#reload").focus();
               return false;
           }
       }).data( "autocomplete" )._renderItem = function( ul, item ) 
@@ -445,7 +438,26 @@ function call_back_function()
   $("#content_ifr").contents().find(".page").attr("contenteditable","true");
   $("#content_ifr").contents().find(".page").select();
 }
-
+function venter(evt)
+{
+  var keypressed = (evt.which) ? evt.which : event.keyCode;
+  if(keypressed==13)
+  {
+      $("#reload").focus();
+      /*
+       var t = $("#templat").val(),
+           a = $("#templat_anio").val();
+       if(t!="")
+       {
+          if(confirm('Realmente deseas cargar la plantilla?'))
+          {
+              var idk = $("#idkardex").val();
+              window.location = "index.php?idkardex="+idk+"&template="+t+"&anio="+a;
+          }
+       }
+      */
+  }
+}
 </script>
 <body style="font-size:65%;background:#FAFAFA; margin:0; padding:0px">
 <form method="post" action="index.php" name="frm" id="frm">
@@ -457,7 +469,7 @@ function call_back_function()
         <a class="btn config" href="javascript:" id="config-page" style="float:right;">CONFIGURAR PAGINA</a>  
         <span style="float:right; padding:0 20px">
           <label style="color:#FFF">CARGAR PLANTILLA: </label>
-          <input type="text" name="templat" id="templat" value="<?php echo $_GET['template'] ?>" style="width:80px" class="ui-widget-content ui-corner-all text" maxlength="7" />
+          <input type="text" name="templat" id="templat" value="<?php echo $_GET['template'] ?>" style="width:80px" class="ui-widget-content ui-corner-all text" maxlength="7"  onkeypress="return venter(event)"/>
           <input type="hidden" name="templat_anio" id="templat_anio" value="<?php echo $_GET['anio'] ?>" class="ui-widget-content ui-corner-all text"  />
           <input type="button" name="reload" id="reload" value="Cargar" />
         </span>        

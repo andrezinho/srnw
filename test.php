@@ -14,6 +14,4 @@ die("No ha sido posible establecer la conexión con la base de datos.");
 return($connection);
 }
 
-
-
 ?>

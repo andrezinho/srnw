@@ -13,8 +13,8 @@ if(!session_id()){ session_start(); }
 	$Anio = $_SESSION["Anio"];
 	$Guardar = "Op=".$Op;
 	if($Op==2 or $Op==4)
-    {
-        $Enabled = "readonly";
+  {
+    $Enabled = "readonly";
 	}	
 	$Enabled2 = "readonly";	
 	if($Id!='')
@@ -142,7 +142,7 @@ if(!session_id()){ session_start(); }
   
   </table>
   <div style="border:1px dotted #cccccc;">
-  <div id="box-list-participantes">
+  <div id="box-list-participantes" style="overflow-y: scroll;">
   <?php
     //Obtengo todos los id de los representados
     $sqlr = "SELECT distinct idrepresentado 
@@ -150,11 +150,11 @@ if(!session_id()){ session_start(); }
             where idrepresentado is not null and idkardex = ".$Id;
     $qr = $Conn->Query($sqlr);
     $idsr = "0";
+
     while($rr = $Conn->FetchArray($qr))
     {
       $idsr .= ",".$rr[0];
     }
-    //echo $sqlr;
 
     $SQL2 = "SELECT kardex_participantes.idkardex, 
                     case documento.iddocumento when 1 then 'D.N.I'

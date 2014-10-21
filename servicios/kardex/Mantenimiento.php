@@ -358,9 +358,9 @@ $(function() {
                 <label class="TituloMant labels">Foja Final :</label>
                 <input type="text"  align="left" class="inputtext" style="font-size:12px; width:80px; text-transform:uppercase;" name="0form1_fojafin" id="FojaFin" value="<?php echo $row[9];?>" <?php echo $Enabled;?> onkeypress="CambiarFoco(event, 'SerieInicio');"/>
                 <label class="TituloMant labels">Serie Final :</label>
-                <input type="text"  align="left" class="inputtext" style="font-size:12px; width:80px; text-transform:uppercase;" name="0form1_seriefin" id="SerieFin" value="<?php echo $row[11];?>" <?php echo $Enabled;?> onkeypress="CambiarFoco(event, 'SerieFin');"/>
+                <input type="text"  align="left" class="inputtext" style="font-size:12px; width:80px; text-transform:uppercase;" name="0form1_seriefin" id="SerieFin" value="<?php echo $row[11];?>" <?php echo $Enabled;?> onkeypress="CambiarFoco(event, 'SerieFin');"/>                
                 <label class="TituloMant labels">Estado :</label>
-                <input type="checkbox" name="Firmado2" id="Firmado2" <?php if ($Firmado==1) echo "checked='checked'"; ?> onclick="CambiaFirmado();" /><input type="hidden" name="0form1_firmado" id="Firmado" value="<?php echo $Firmado;?>" /> Firmado
+                <input type="checkbox" name="Firmado2" id="Firmado2" <?php if ($Firmado==1) echo "checked='checked'"; ?> onclick="CambiaFirmado();" /><input type="hidden" name="0form1_firmado" id="Firmado" value="<?php echo $Firmado;?>" /> Firmado                
                 <br/>
                 </div>
             </div>

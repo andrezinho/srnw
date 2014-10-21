@@ -56,9 +56,52 @@ else
 }
 //echo $sql;
 $inserta_foto=$Conn->Query($sql);
+
+//Verifiacmos Estado
+$Id=$_GET['idk'];
+$sqlr = "SELECT distinct idrepresentado 
+        from kardex_participantes 
+        where idrepresentado is not null and idkardex = ".$_GET['idkardex'];
+$qr = $Conn->Query($sqlr);
+$idsr = "0";
+while($rr = $Conn->FetchArray($qr))
+{
+    $idsr .= ",".$rr[0];
+}
+
+
+$sql = "SELECT count(*),firmo from kardex_participantes
+        where idkardex = ".$_GET['idkardex']." and idparticipante not in (".$idsr.")
+        group by firmo";
+$q = $Conn->Query($sql);
+$flag = true;
+while($r=$Conn->FetchArray($q))
+{
+    if($r['firmo']=="0")
+        $flag = false;
+}
+
+if($flag)
+{
+    $sql = "SELECT count(*),firmo_conyuge
+            from kardex_participantes
+            where idkardex = ".$_GET['idkardex']." and idparticipante not in (".$idsr.") and conyuge is not null
+            group by firmo_conyuge";
+    $q = $Conn->Query($sql);    
+    while($r=$Conn->FetchArray($q))
+    {
+        if($r['firmo']=="0")
+            $flag = false;
+    }
+    if($flag)
+    {
+        $sql = "UPDATE kardex set estado = 2 where idkardex = ".$_GET['idkardex'];
+        $q = $Conn->Query($sql);
+    }
+}
+
 $filename = $id_foto.'.jpg';//nombre del archivo
 
 $url = 'http://' . $_SERVER['HTTP_HOST'].'/srnw_webcam/' . $filename;//generamos la respuesta como la ruta completa
-print "$url\n";//20120214060943.jpg
-
+print "$url\n";
 ?>
