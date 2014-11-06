@@ -48,7 +48,7 @@ if(!isset($_GET['c'])||$_GET['c']=="")
 }
 if((int)$_GET['c']==0)
 {
-    $sql="update kardex_participantes set foto = '".$id_foto."', firmo=1, firmofecha='".$fecha."' where idkardex = ".$_GET['idkardex']." and idparticipante = ".$_GET['idp'];
+    $sql="update kardex_participantes set foto = '".$id_foto."', firmo=1, firmofecha='".$fecha."' where idkardex = ".$_GET['idkardex']." and idparticipante = ".$_GET['idp'];    
 }
 else
 {

@@ -61,6 +61,7 @@ if (!$Consulta)
 
         $item = $participantes->nitem;
         $str_idp = "0";
+        $slq_set = "";
         for($i=0;$i<$item;$i++)
         {
                 if($participantes->estado[$i]==true&&search_conyuge($participantes->idparticipante[$i])!=true)
@@ -115,9 +116,20 @@ if (!$Consulta)
                                         '".$participantes->zona[$i]."');";
                         $Consulta2 = $Conn->Query($sql);
                     }
+
+                    if($participantes->idrepresentado[$i])
+                    {
+                        $slq_set .= "UPDATE kardex_participantes 
+                                        set representado = 1
+                                    where idkardex = ".$_POST['1form1_idkardex']." 
+                                        and idparticipante = ".$participantes->idrepresentado;                        
+                    }
                 }
             }
-
+            if($sql_set!="")
+            {
+                $Conn->Query($sql_set);
+            }
             if ($Op!=4)
             {
                 $SQLDelete = "DELETE FROM kardex_participantes WHERE idkardex='".$_POST['1form1_idkardex']."' and idparticipante not in (".$str_idp.") ";
