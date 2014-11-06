@@ -205,17 +205,32 @@ if(!session_id()){ session_start(); }
 			alert('El comprobante no posee detalle');
 			return false;
 		}
-        var td = $("#Comprobante").val();
-        if(td==2)
+
+        var ndoc = $("#DniRuc").val(),
+            t = ndoc.length,
+            td = $("#Comprobante").val();
+        
+        if(t==11)
         {
-            var ndoc = $("#DniRuc").val();
-            var t = ndoc.lenght;
-            if(t!=11)
+
+            if(td!=2)
             {
-                alert("Para generar una factura se debe ingresar una persona juridica. (RUC)");
+                if(!confirm("Realmente desea emitir una boleta con numero de RUC?"))
+                {
+                    return false;
+                }
+            }
+        }
+        else
+        {
+            if(td==2)
+            {
+                alert("No se puede generar una factura con DNI. \n\nSolucion: Debe ingresar el numero de RUC");
                 return false;
             }
         }
+
+                
 		return true;
 	}	
 	function Imprime(Id){

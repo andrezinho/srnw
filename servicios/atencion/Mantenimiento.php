@@ -230,7 +230,7 @@ $('#existe').click(function()
             }).data( "autocomplete" )._renderItem = function( ul, item ) {                
                 return $( "<li></li>" )
                     .data( "item.autocomplete", item )
-                    .append( "<a>"+ item.nombres + "</a>" )
+                    .append( "<a>"+ item.nombres + " - "+item.dni_ruc+"</a>" )
                     .appendTo( ul );
             };
 

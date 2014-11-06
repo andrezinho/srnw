@@ -85,7 +85,14 @@ $ArrayP = array(NULL);
     ruc = $("#Ruc").val(),
     idcli = $("#idcliente").val(),
     rz    = $("#RazonSocial").val();
-    $.get('../../libs/autocompletar/last_libro.php','idtl='+idtl+'&ruc='+ruc+'&idcli='+idcli+'&rz='+rz,function(data)
+    var obj =  { 
+                idtl:idtl,
+                ruc:ruc,
+                idcli:idcli,
+                rz:rz
+              }
+    var str = $.param(obj);
+    $.get('../../libs/autocompletar/last_libro.php',str,function(data)
     {
         if(parseInt(data)!=0)
         {
